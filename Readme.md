@@ -25,7 +25,93 @@
     -  Click on `Add users`, and give the name to user as you desire `projectuser`.
     -  Tick on `Provide user access to the AWS Management Console - optional` if you want to give management console access to the user.
     -  Select `I want to create an IAM user`, `Custom password` and give the password you desire then click `Next`.
-    -  Select `Attach policies directly`, from the list of policies select `AmazonS3FullAccess` and then `Next` and click `create user`.
+    -  Select `Attach policies directly`, and then click on `create policy` it will open a page in new tab.
+    - In create policy page click on `json` and then pasete the following json permissions:
+        '''sh
+        {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "Stmt1686846496236",
+                    "Action": [
+                        "iam:AttachRolePolicy",
+                        "iam:CreatePolicy",
+                        "iam:CreateRole",
+                        "iam:ListPolicies",
+                        "iam:DetachRolePolicy",
+                        "iam:DeleteRolePolicy",
+                        "iam:DeleteRole"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "*"
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3:*",
+                        "s3-object-lambda:*"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Action": [
+                        "sns:*"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "*"
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": [
+                        "cloudformation:DescribeStacks",
+                        "cloudformation:ListStackResources",
+                        "cloudformation:CreateUploadBucket",
+                        "cloudwatch:ListMetrics",
+                        "cloudwatch:GetMetricData",
+                        "ec2:DescribeSecurityGroups",
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeVpcs",
+                        "kms:ListAliases",
+                        "iam:GetPolicy",
+                        "iam:GetPolicyVersion",
+                        "iam:GetRole",
+                        "iam:GetRolePolicy",
+                        "iam:ListAttachedRolePolicies",
+                        "iam:ListRolePolicies",
+                        "iam:ListRoles",
+                        "lambda:*",
+                        "logs:DescribeLogGroups",
+                        "states:DescribeStateMachine",
+                        "states:ListStateMachines",
+                        "tag:GetResources",
+                        "xray:GetTraceSummaries",
+                        "xray:BatchGetTraces",
+                        "cloudformation:*"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": "iam:PassRole",
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "iam:PassedToService": "lambda.amazonaws.com"
+                        }
+                    }
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": [
+                        "logs:DescribeLogStreams",
+                        "logs:GetLogEvents",
+                        "logs:FilterLogEvents"
+                    ],
+                    "Resource": "arn:aws:logs:*:*:log-group:/aws/lambda/*"
+                }
+            ]
+        }
+        '''
     -  In `Console sign-in details` click on `Download CSV file` which has the login credentials and then return to user list.
     -  In the user list select the user that we created, and then click on `Security Credentials`.
     -  Scroll down and then click on `Create Access Key` thereafter select `Command Line Interface (CLI)`, check the I understand.... and procced further on `Next`. In last Page Click `Create access Key`.
@@ -45,5 +131,5 @@
 -   Type `aws --version` to check if the aws was successfully installed.
 -   Type `aws configure` hit enter.
     -   Paste the access key, and the Secret access key from the csv file that we downloaded.
-    -   Give the region code in which you want to deploy your resources. `us-west-1`
+    -   Give the region code in which you want to deploy your resources. `us-east-1`
     -   Keep default output format to `json`.
