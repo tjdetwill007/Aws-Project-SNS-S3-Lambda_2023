@@ -167,25 +167,25 @@
         - arn:aws:iam::aws:policy/AmazonSNSFullAccess
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
         - arn:aws:iam::aws:policy/AmazonS3FullAccess
-        RoleName: Lambdarole1
+        RoleName: Lambdarole1 #Give the role name
     #Creating a SNS topic
     LambdaTopic:
         Type: AWS::SNS::Topic
         Properties: 
         DisplayName: LambdaTopic
-        TopicName: lambdatopic
+        TopicName: lambdatopic #Give the topic name
     #Subscribing to the SNS topic with my EMAIL ID.
     MyEmailSubscription:
         Type: AWS::SNS::Subscription
         Properties:
         TopicArn: !Ref LambdaTopic
         Protocol: email
-        Endpoint: tjdetwill007@gmail.com
+        Endpoint: abc@gmail.com ##Enter your email id
     #Creating the Lambda Function with the python runtime.
     LambdaFunction:
         Type: AWS::Lambda::Function
         Properties: 
-        FunctionName: MyLambdaFunction
+        FunctionName: MyLambdaFunction #give a name to Lambda Function
         Handler: index.lambda_handler
         Runtime: python3.9
         Code:
@@ -237,11 +237,11 @@
     mybucket:
         Type: AWS::S3::Bucket
         Properties:
-        BucketName: s3automate123321
+        BucketName: s3automate123321 #Give a global unique name to s3 bucket
         NotificationConfiguration:
             LambdaConfigurations:
             - Event: 's3:ObjectCreated:Put'
                 Function: !GetAtt LambdaFunction.Arn  
     #If you add any other resources please be assure about the dependency of each resources with other ressources to  avoid Validation ERROR.     
-    #Please edit this yaml file resource name and attributes as per your environment. 
+    #Please edit this yaml file resource name and attributes as per your environment.  
     ```
