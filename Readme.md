@@ -27,7 +27,7 @@
     -  Select `I want to create an IAM user`, `Custom password` and give the password you desire then click `Next`.
     -  Select `Attach policies directly`, and then click on `create policy` it will open a page in new tab.
     - In create policy page click on `json` and then pasete the following json permissions:
-        '''sh
+        ```sh
         {
             "Version": "2012-10-17",
             "Statement": [
@@ -111,7 +111,7 @@
                 }
             ]
         }
-        '''
+        ```
     -  In `Console sign-in details` click on `Download CSV file` which has the login credentials and then return to user list.
     -  In the user list select the user that we created, and then click on `Security Credentials`.
     -  Scroll down and then click on `Create Access Key` thereafter select `Command Line Interface (CLI)`, check the I understand.... and procced further on `Next`. In last Page Click `Create access Key`.
