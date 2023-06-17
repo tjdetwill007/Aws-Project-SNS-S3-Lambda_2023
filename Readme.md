@@ -139,7 +139,7 @@
 
 ___________________________________________________________________________________________________
 
-### Creating YAML configurattion file to deploy our resources using CloudFormation.
+### Creating YAML configurattion file to deploy our resources using CloudFormation:
 
 -   Open any text editor and edit the following YAML code as per your need:
 
@@ -252,10 +252,10 @@ ________________________________________________________________________________
 ___________________________________________________________________________________________________
 
 
-### Deploying the Yaml file using AWS CLI
+### Deploying the Yaml file using AWS CLI:
 
 -   Open your terminal with AWS CLI installed in it. Here am using Linux terminal.
--   Now move to the directory where we have kept our ***infra.yaml*** file. Using cd command in linux.
+-   Now move to the directory where we have kept our ***infra.yaml***  file. Using cd command in linux.
 -   Write the following command :
     ```sh
     aws cloudformation create-stack \
@@ -272,7 +272,34 @@ ________________________________________________________________________________
     --query 'StackResources[*].[ResourceType,ResourceStatus]' \
     --output table
     ```
-    It will show the status of creation, in every 5 seconds the status will be updated on terminal.
+    It will show the status of creation, in every 5 seconds the status will be updated on the terminal.
+- Once it shows completed then we have successfully deployed our resources, to verify it we can check each resources using management console.
+
+Now lets test our lambda function.
+__________________________________________________________________________________________________________________________
+### Testing:
+
+-   First check your mail box if you have received a mail to subscribe our sns topic, (Sometimes it may fall into spam mail or Promotional mail), if you have recieved it then click on the link to subscribe to our sns topic(**LambdaTopic**).
+-   Now lets move to our terminal again and try to upload some file, to check if its triggering our lambda function which will further trigger SNS and we will receive an email containing name of the file.
+    -   Write the following commands:
+        ```sh
+        aws s3 cp <source file path to upload> s3://<Bucket Name>
+        ```
+    -   After successful uploading of file, check your mail, you will see a notification mail having body stating the name of file which we uploaded into the bucket.
+
+## Conclusion:    
+
+We successfully deployed the infrastructure using cloudformation, which sends the notification to the admin user who has subscribed to our sns topic whenever any file is uploaded to the  s3 bucket. 
+
+## About me:
+
+Hi my name is **Deepak Kumar**, this project is done by me. I took help from official aws documentation page to know about several aws cli commands for s3 and cloudformation. I had a nice experience while making this project  as i got to learn many new things , and i hope this will be helpful for everyone who all are new to Aws like me.
+
+    
+
+    
+
+  
 
 
 
