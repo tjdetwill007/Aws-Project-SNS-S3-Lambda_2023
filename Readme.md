@@ -11,7 +11,7 @@
 -   AWS IAM
 
 ### Project Architecture:
-![Project Diagram](https://github.com/faysalmehedi/aws-ha-app-deployment-demo/blob/main/ha-web-app-diagram.svg)
+![Project Diagram](https://github.com/tjdetwill007/Aws-Project-SNS-S3-Lambda_2023/blob/master/project_infra.png)
 
 ### Let's start:
 
