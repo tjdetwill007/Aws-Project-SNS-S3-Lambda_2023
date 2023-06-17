@@ -137,6 +137,8 @@
     -   Give the region code in which you want to deploy your resources. `us-east-1`
     -   Keep default output format to `json`.
 
+___________________________________________________________________________________________________
+
 ### Creating YAML configurattion file to deploy our resources using CloudFormation.
 
 -   Open any text editor and edit the following YAML code as per your need:
@@ -247,6 +249,8 @@
     ```
     -   Read the code comments and give the name to the resources, only on the commented place or else it will throw an error while deployment.
     - Save the code with name and YAML extension. Example: infra.yaml
+___________________________________________________________________________________________________
+
 
 ### Deploying the Yaml file using AWS CLI
 
