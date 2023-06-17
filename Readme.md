@@ -245,3 +245,30 @@
     #If you add any other resources please be assure about the dependency of each resources with other ressources to  avoid Validation ERROR.     
     #Please edit this yaml file resource name and attributes as per your environment.  
     ```
+    -   Read the code comments and give the name to the resources, only on the commented place or else it will throw an error while deployment.
+    - Save the code with name and YAML extension. Example: infra.yaml
+
+#### Deploying the Yaml file using AWS CLI
+
+-   Open your terminal with AWS CLI installed in it. Here am using Linux terminal.
+-   Now move to the directory where we have kept our ***infra.yaml*** file. Using cd command in linux.
+-   Write the following command :
+    ```sh
+    aws cloudformation create-stack \
+    --stack-name myStack \
+    --template-body file://infra.yaml \
+    --capabilities CAPABILITY_NAMED_IAM \
+    ```
+    Replace myStack with the name that you want to give to your cloudformation stack and infra.yaml with the yaml file that you have created.
+-   Now to check the creation events and status write the following commands:
+    ```sh
+    watch -n 5 -d \
+    aws cloudformation describe-stack-resources \
+    --stack-name myStack \
+    --query 'StackResources[*].[ResourceType,ResourceStatus]' \
+    --output table
+    ```
+    It will show the status of creation, in every 5 seconds the status will be updated on terminal.
+
+
+
