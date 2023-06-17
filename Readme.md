@@ -283,7 +283,7 @@ ________________________________________________________________________________
 -   Now lets move to our terminal again and try to upload some file, to check if its triggering our lambda function which will further trigger SNS and we will receive an email containing name of the file.
     -   Write the following commands:
         ```sh
-        aws s3 cp <source file path to upload> s3://<Bucket Name>
+        aws s3 cp <source file path to upload> s3://<Bucket Name>/
         ```
     -   After successful uploading of file, check your mail, you will see a notification mail having body stating the name of file which we uploaded into the bucket.
 
